@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 
 const Header = () => {
@@ -29,19 +30,19 @@ const Header = () => {
                         </div>
 
                         <div className="hidden md:flex items-center gap-8">
-                            <a href="#" className="text-gray-900 hover:text-slate-900 transition-colors font-bold">
+                            <Link href="/" className="text-gray-900 hover:text-slate-900 transition-colors font-bold">
                                 Home
-                            </a>
-                            <a href="#features" className="text-gray-900 hover:text-slate-900 transition-colors font-bold">
+                            </Link>
+                            <a href="#features" className="text-gray-900 hover:text-slate-900 transition-colors font-bold cursor-pointer">
                                 •   Features
                             </a>
-                            <a href="#pricing" className="text-gray-900 hover:text-slate-900 transition-colors font-bold">
+                            <Link href="#pricing" className="text-gray-900 hover:text-slate-900 transition-colors font-bold">
                                 •   Pricing
-                            </a>
-                            <a href="#solutions" className="text-gray-900 hover:text-slate-900 transition-colors font-bold">
+                            </Link>
+                            <a href="#solutions" className="text-gray-900 hover:text-slate-900 transition-colors font-bold cursor-pointer">
                                 •  Solutions
                             </a>
-                            <a href="#contact" className="text-gray-900 hover:text-slate-900 transition-colors font-bold">
+                            <a href="#contact" className="text-gray-900 hover:text-slate-900 transition-colors font-bold cursor-pointer">
                                 •  Contact
                             </a>
                         </div>

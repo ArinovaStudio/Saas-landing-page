@@ -13,8 +13,10 @@ __turbopack_context__.s([
     ()=>__TURBOPACK__default__export__
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/node_modules/next/dist/client/app-dir/link.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
 'use client';
+;
 ;
 ;
 const Header = ()=>{
@@ -43,12 +45,12 @@ const Header = ()=>{
                                         className: "w-5 h-5 border-2 border-white rounded"
                                     }, void 0, false, {
                                         fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                                        lineNumber: 24,
+                                        lineNumber: 25,
                                         columnNumber: 33
                                     }, ("TURBOPACK compile-time value", void 0))
                                 }, void 0, false, {
                                     fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                                    lineNumber: 23,
+                                    lineNumber: 24,
                                     columnNumber: 29
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -56,67 +58,67 @@ const Header = ()=>{
                                     children: "WorkNest"
                                 }, void 0, false, {
                                     fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                                    lineNumber: 26,
+                                    lineNumber: 27,
                                     columnNumber: 29
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                            lineNumber: 22,
+                            lineNumber: 23,
                             columnNumber: 25
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "hidden md:flex items-center gap-8",
                             children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                     href: "#",
                                     className: "text-gray-900 hover:text-slate-900 transition-colors font-bold",
                                     children: "Home"
                                 }, void 0, false, {
                                     fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                                    lineNumber: 32,
+                                    lineNumber: 33,
                                     columnNumber: 29
                                 }, ("TURBOPACK compile-time value", void 0)),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                     href: "#features",
                                     className: "text-gray-900 hover:text-slate-900 transition-colors font-bold",
                                     children: "•   Features"
                                 }, void 0, false, {
                                     fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                                    lineNumber: 35,
+                                    lineNumber: 36,
                                     columnNumber: 29
                                 }, ("TURBOPACK compile-time value", void 0)),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                    href: "#pricing",
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                    href: "/pricing",
                                     className: "text-gray-900 hover:text-slate-900 transition-colors font-bold",
                                     children: "•   Pricing"
                                 }, void 0, false, {
                                     fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                                    lineNumber: 38,
+                                    lineNumber: 39,
                                     columnNumber: 29
                                 }, ("TURBOPACK compile-time value", void 0)),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                     href: "#solutions",
                                     className: "text-gray-900 hover:text-slate-900 transition-colors font-bold",
                                     children: "•  Solutions"
                                 }, void 0, false, {
                                     fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                                    lineNumber: 41,
+                                    lineNumber: 42,
                                     columnNumber: 29
                                 }, ("TURBOPACK compile-time value", void 0)),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                     href: "#contact",
                                     className: "text-gray-900 hover:text-slate-900 transition-colors font-bold",
                                     children: "•  Contact"
                                 }, void 0, false, {
                                     fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                                    lineNumber: 44,
+                                    lineNumber: 45,
                                     columnNumber: 29
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                            lineNumber: 31,
+                            lineNumber: 32,
                             columnNumber: 25
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -127,7 +129,7 @@ const Header = ()=>{
                                     children: "Login"
                                 }, void 0, false, {
                                     fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                                    lineNumber: 50,
+                                    lineNumber: 51,
                                     columnNumber: 29
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -135,29 +137,29 @@ const Header = ()=>{
                                     children: "Get Started"
                                 }, void 0, false, {
                                     fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                                    lineNumber: 53,
+                                    lineNumber: 54,
                                     columnNumber: 29
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                            lineNumber: 49,
+                            lineNumber: 50,
                             columnNumber: 25
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                    lineNumber: 21,
+                    lineNumber: 22,
                     columnNumber: 21
                 }, ("TURBOPACK compile-time value", void 0))
             }, void 0, false, {
                 fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                lineNumber: 20,
+                lineNumber: 21,
                 columnNumber: 17
             }, ("TURBOPACK compile-time value", void 0))
         }, void 0, false, {
             fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-            lineNumber: 18,
+            lineNumber: 19,
             columnNumber: 13
         }, ("TURBOPACK compile-time value", void 0))
     }, void 0, false);
@@ -1314,6 +1316,21 @@ function WorkNestLanding() {
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$app$2f$components$2f$Footer$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/page.tsx",
                 lineNumber: 28,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(BusinessDashboard, {}, void 0, false, {
+                fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/page.tsx",
+                lineNumber: 29,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Pricing, {}, void 0, false, {
+                fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/page.tsx",
+                lineNumber: 30,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(SupportTestimonials, {}, void 0, false, {
+                fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/page.tsx",
+                lineNumber: 31,
                 columnNumber: 7
             }, this)
         ]
