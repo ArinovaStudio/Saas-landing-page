@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Package {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  price       Decimal  @db.Decimal(10, 2)
+  currency    String   @default("INR")
+  features    Json
+  isPopular   Boolean  @default(false)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  userPackages UserPackage[]
+}
+
+model UserPackage {
+  id              String         @id @default(cuid())
+  userId          String
+  packageId       String
+  status          PACKAGE_STATUS @default(ACTIVE)
+  purchasedAt     DateTime       @default(now())
+  expiresAt       DateTime?
+  autoRenew       Boolean        @default(false)
+  transactionId   String?
+  paymentAmount   Decimal        @db.Decimal(10, 2)
+  paymentCurrency String         @default("INR")
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  package Package @relation(fields: [packageId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([packageId])
+  @@index([status])
+}
+
+enum PACKAGE_STATUS {
+  ACTIVE
+  EXPIRED
+  CANCELLED
+}

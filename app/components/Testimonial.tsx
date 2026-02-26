@@ -169,13 +169,13 @@ const SupportTestimonials: React.FC = () => {
                                                 className={`
                 absolute inset-0 transition-all duration-700 
                 ${isActive ? "opacity-100 translate-x-0 z-20" : ""}
-                ${isNext ? "opacity-70 translate-x-[65%] scale-95 z-10" : ""}
+                ${isNext ? "opacity-70 translate-x-[80%] scale-95 z-10" : ""}
                 ${!isActive && !isNext ? "opacity-0 translate-x-full pointer-events-none" : ""}
             `}
                                             >
                                                 <div
                                                     className={`
-                    rounded-3xl p-8 w-90 shadow-xl border transition-all duration-700
+                    rounded-3xl p-8 w-100 shadow-xl border transition-all duration-700
                     ${isActive ? "bg-orange-50/30 border-orange-100" : "bg-white/60 border-gray-100"}
                 `}
                                                 >

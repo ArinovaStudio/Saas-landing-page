@@ -7,11 +7,13 @@ __turbopack_context__.s([
     ()=>__TURBOPACK__default__export__
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/node_modules/next/image.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 'use client';
+;
 ;
 ;
 const Header = ()=>{
@@ -41,32 +43,29 @@ const Header = ()=>{
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "flex items-center gap-2",
                             children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center",
-                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "w-5 h-5 border-2 border-white rounded"
-                                    }, void 0, false, {
-                                        fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                                        lineNumber: 25,
-                                        columnNumber: 33
-                                    }, ("TURBOPACK compile-time value", void 0))
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                    src: "/ARINOVA final.jpg",
+                                    alt: "logo",
+                                    width: 40,
+                                    height: 40,
+                                    className: "rounded-3xl"
                                 }, void 0, false, {
                                     fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                                    lineNumber: 24,
+                                    lineNumber: 28,
                                     columnNumber: 29
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     className: "text-2xl font-semibold text-gray-900",
-                                    children: "WorkNest"
+                                    children: "Arinova Studio"
                                 }, void 0, false, {
                                     fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                                    lineNumber: 27,
+                                    lineNumber: 29,
                                     columnNumber: 29
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                            lineNumber: 23,
+                            lineNumber: 24,
                             columnNumber: 25
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -78,7 +77,7 @@ const Header = ()=>{
                                     children: "Home"
                                 }, void 0, false, {
                                     fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                                    lineNumber: 33,
+                                    lineNumber: 35,
                                     columnNumber: 29
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -87,7 +86,7 @@ const Header = ()=>{
                                     children: "•   Features"
                                 }, void 0, false, {
                                     fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                                    lineNumber: 36,
+                                    lineNumber: 38,
                                     columnNumber: 29
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -96,7 +95,7 @@ const Header = ()=>{
                                     children: "•   Pricing"
                                 }, void 0, false, {
                                     fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                                    lineNumber: 39,
+                                    lineNumber: 41,
                                     columnNumber: 29
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -105,7 +104,7 @@ const Header = ()=>{
                                     children: "•  Solutions"
                                 }, void 0, false, {
                                     fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                                    lineNumber: 42,
+                                    lineNumber: 44,
                                     columnNumber: 29
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -114,13 +113,13 @@ const Header = ()=>{
                                     children: "•  Contact"
                                 }, void 0, false, {
                                     fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                                    lineNumber: 45,
+                                    lineNumber: 47,
                                     columnNumber: 29
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                            lineNumber: 32,
+                            lineNumber: 34,
                             columnNumber: 25
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -131,7 +130,7 @@ const Header = ()=>{
                                     children: "Login"
                                 }, void 0, false, {
                                     fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                                    lineNumber: 51,
+                                    lineNumber: 53,
                                     columnNumber: 29
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -139,29 +138,29 @@ const Header = ()=>{
                                     children: "Get Started"
                                 }, void 0, false, {
                                     fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                                    lineNumber: 54,
+                                    lineNumber: 56,
                                     columnNumber: 29
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                            lineNumber: 50,
+                            lineNumber: 52,
                             columnNumber: 25
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                    lineNumber: 22,
+                    lineNumber: 23,
                     columnNumber: 21
                 }, ("TURBOPACK compile-time value", void 0))
             }, void 0, false, {
                 fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-                lineNumber: 21,
+                lineNumber: 22,
                 columnNumber: 17
             }, ("TURBOPACK compile-time value", void 0))
         }, void 0, false, {
             fileName: "[project]/OneDrive/Internship Arinova Studios/Saas-landing-page/app/components/header.tsx",
-            lineNumber: 19,
+            lineNumber: 20,
             columnNumber: 13
         }, ("TURBOPACK compile-time value", void 0))
     }, void 0, false);
@@ -896,12 +895,12 @@ const SupportTestimonials = ()=>{
                                                         className: `
                 absolute inset-0 transition-all duration-700 
                 ${isActive ? "opacity-100 translate-x-0 z-20" : ""}
-                ${isNext ? "opacity-70 translate-x-[65%] scale-95 z-10" : ""}
+                ${isNext ? "opacity-70 translate-x-[80%] scale-95 z-10" : ""}
                 ${!isActive && !isNext ? "opacity-0 translate-x-full pointer-events-none" : ""}
             `,
                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Internship__Arinova__Studios$2f$Saas$2d$landing$2d$page$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: `
-                    rounded-3xl p-8 w-90 shadow-xl border transition-all duration-700
+                    rounded-3xl p-8 w-100 shadow-xl border transition-all duration-700
                     ${isActive ? "bg-orange-50/30 border-orange-100" : "bg-white/60 border-gray-100"}
                 `,
                                                             children: [

@@ -1,0 +1,776 @@
+"use client";
+import React, { useEffect, useRef, useState, useCallback } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+
+
+// HorizontaLDots,
+import {
+  ChevronDownIcon,
+  AlbumIcon, AlignHorizontalJustifyStart, Clock10Icon, FolderGit2, GraduationCapIcon, Handshake, HeartPulseIcon, MessageSquareMore,
+  Presentation,
+  Lightbulb,
+  FileUp,
+  Calendar,
+  Dices,
+  Layers,
+  FileText,
+  UsersRound,
+  TentTree,
+  Flag,
+  ChartNoAxesCombined,
+  HeartPlus,
+  LucideClipboardPenLine,
+  Building2,
+  CreditCard
+} from "lucide-react"
+import { useSidebar } from "./SidebarContext";
+import { useNotifications } from "./NotificationContext";
+import { appConfig } from "./appConfig";
+import { HorizontaLDots } from ".";
+// import { HorizontaLDots } from "@/icons";
+// import HorizontaLDots from "@/icons/horizontal-dots.svg";
+// import { appConfig } from "@/config/appConfig";
+// import { useNotifications } from "@/context/NotificationContext";
+
+type MenuType =
+  | "main"
+  | "others"
+  | "for client"
+  | "for Admin"
+  | "for Manager"
+  | "for Hrmanager"
+  | "for Finance"
+  | "for Projectmanager";
+
+type NavItem = {
+  name: string;
+  icon: React.ReactNode;
+  path?: string;
+  role?: "ADMIN" | "USER" | "CLIENT";
+  subItems?: { name: string; path: string; pro?: boolean; new?: boolean }[];
+};
+
+const navItems: NavItem[] = [
+  {
+    icon: <AlignHorizontalJustifyStart strokeWidth={1.5} />,
+    name: "Analytics",
+    path: "/"
+  },
+  {
+    icon: <Clock10Icon strokeWidth={1.5} />,
+    name: "Check-in",
+    path: "/clock",
+  },
+  {
+    icon: <FolderGit2 strokeWidth={1.5} />,
+    name: "Projects",
+    path: "/project",
+  },
+  {
+    name: "Kanban Board",
+    icon: <Layers />,
+    path: "/kanban",
+    // subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
+  },
+  {
+    icon: <HeartPulseIcon strokeWidth={1.5} />,
+    name: "Well Being",
+    path: "/well-being",
+  },
+  {
+    icon: <Presentation strokeWidth={1.5} />,
+    name: "Meetings",
+    path: "/meeting",
+  },
+  ,
+  {
+    icon: <Building2 strokeWidth={1.5} />,
+    name: "Payout",
+    path: "/user-payout",
+  },
+];
+
+const othersItems: NavItem[] = [
+  {
+    icon: <AlbumIcon strokeWidth={1.5} />,
+    name: "Leave Requests",
+    path: "/leave-requests",
+  },
+  {
+    icon: <Handshake strokeWidth={1.5} />,
+    name: "Feedbacks",
+    path: "/feedbacks",
+  },
+  {
+    icon: <GraduationCapIcon strokeWidth={1.5} />,
+    name: "Certifications",
+    path: "/certificates"
+  },
+  {
+    icon: <Calendar strokeWidth={1.5} />,
+    name: "Calanedar",
+    path: "/calender"
+  },
+];
+
+const clientItems: NavItem[] = [
+  {
+    icon: <Presentation strokeWidth={1.5} />,
+    name: "Meetings",
+    path: "/client-meetings",
+  },
+  {
+    icon: <Lightbulb strokeWidth={1.5} />,
+    name: "Features",
+    path: "/client-features",
+  },
+  {
+    icon: <FileUp strokeWidth={1.5} />,
+    name: "Documents",
+    path: "/client-documents",
+  },
+  {
+    icon: <MessageSquareMore strokeWidth={1.5} />,
+    name: "Feedbacks",
+    path: "/client-feedback",
+  },
+  {
+    icon: <FileText strokeWidth={1.5} />,
+    name: "M. Memo",
+    path: "/memobook",
+  },
+  {
+    icon: <CreditCard strokeWidth={1.5} />,
+    name: "Payment Requests",
+    path: "/client-payout",
+  }
+];
+
+const adminOnlyItem: NavItem[] = [
+  {
+    name: "Daily Reports",
+    icon: <Flag strokeWidth={1.5} />,
+    path: "/daily-reports",
+  },
+  {
+    name: "Leave Management",
+    icon: <TentTree strokeWidth={1.5} />,
+    path: "/leavemanage",
+  },
+  {
+    name: "User Management",
+    icon: <UsersRound strokeWidth={1.5} />,
+    path: "/user",
+  },
+  {
+    name: "User Performance",
+    icon: <ChartNoAxesCombined strokeWidth={1.5} />,
+    path: "/user-performance",
+  },
+  {
+    name: "Well Being  Management",
+    icon: <HeartPlus strokeWidth={1.5} />,
+    path: "/well-being-management",
+    role: "ADMIN"
+  },
+  {
+    icon: <Dices strokeWidth={1.5} />,
+    name: "Quotes",
+    path: "/quotes",
+    role: "ADMIN"
+  },
+  {
+    icon: <LucideClipboardPenLine strokeWidth={1.5} />,
+    name: "Project Plan",
+    path: "/project-plan",
+    role: "ADMIN"
+  },
+  {
+    icon: <Building2 strokeWidth={1.5} />,
+    name: "Payout",
+    path: "/payout",
+    role: "ADMIN"
+  },
+  {
+    icon: <Clock10Icon strokeWidth={1.5} />,
+    name: "Check-in",
+    path: "/clock",
+  },
+];
+
+const ManagerOnlyItem: NavItem[] = [
+  {
+    icon: <AlignHorizontalJustifyStart strokeWidth={1.5} />,
+    name: "Analytics",
+    path: "/"
+  },
+  {
+    icon: <Clock10Icon strokeWidth={1.5} />,
+    name: "Check-in",
+    path: "/clock",
+  },
+  {
+    icon: <FolderGit2 strokeWidth={1.5} />,
+    name: "Projects",
+    path: "/project",
+  },
+
+  {
+    name: "Kanban Board",
+    icon: <Layers />,
+    path: "/kanban",
+    // subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
+  },
+  {
+    icon: <Presentation strokeWidth={1.5} />,
+    name: "Meetings",
+    path: "/meeting",
+  },
+  {
+    name: "Daily Reports",
+    icon: <Flag strokeWidth={1.5} />,
+    path: "/daily-reports",
+  },
+  {
+    name: "Leave Management",
+    icon: <TentTree strokeWidth={1.5} />,
+    path: "/leavemanage",
+  },
+  {
+    name: "User Management",
+    icon: <UsersRound strokeWidth={1.5} />,
+    path: "/user",
+  },
+  {
+    name: "User Performance",
+    icon: <ChartNoAxesCombined strokeWidth={1.5} />,
+    path: "/user-performance",
+  },
+  {
+    icon: <AlbumIcon strokeWidth={1.5} />,
+    name: "Leave Requests",
+    path: "/leave-requests",
+  },
+  {
+    icon: <Handshake strokeWidth={1.5} />,
+    name: "Feedbacks",
+    path: "/feedbacks",
+  },
+]
+
+const HrmanagerOnlyItem: NavItem[] = [
+  {
+    icon: <Clock10Icon strokeWidth={1.5} />,
+    name: "Check-in",
+    path: "/clock",
+  },
+  {
+    name: "Well Being  Management",
+    icon: <HeartPlus strokeWidth={1.5} />,
+    path: "/well-being-management",
+  },
+  {
+    name: "Leave Management",
+    icon: <TentTree strokeWidth={1.5} />,
+    path: "/leavemanage",
+  },
+  {
+    name: "User Management",
+    icon: <UsersRound strokeWidth={1.5} />,
+    path: "/user",
+  },
+  {
+    name: "User Performance",
+    icon: <ChartNoAxesCombined strokeWidth={1.5} />,
+    path: "/user-performance",
+  },
+  {
+    icon: <AlbumIcon strokeWidth={1.5} />,
+    name: "Leave Requests",
+    path: "/leave-requests",
+  },
+  {
+    icon: <Handshake strokeWidth={1.5} />,
+    name: "Feedbacks",
+    path: "/feedbacks",
+  },
+  {
+    icon: <GraduationCapIcon strokeWidth={1.5} />,
+    name: "Certifications",
+    path: "/certificates"
+  },
+  {
+    icon: <Calendar strokeWidth={1.5} />,
+    name: "Calanedar",
+    path: "/calender"
+  },
+]
+
+const FinanceOnlyItem: NavItem[] = [
+  {
+    icon: <Building2 strokeWidth={1.5} />,
+    name: "Payout",
+    path: "/user-payout",
+  },
+  {
+    icon: <CreditCard strokeWidth={1.5} />,
+    name: "Payment Requests",
+    path: "/client-payout",
+  },
+  {
+    name: "Daily Reports",
+    icon: <Flag strokeWidth={1.5} />,
+    path: "/daily-reports",
+  },
+  {
+    name: "User Management",
+    icon: <UsersRound strokeWidth={1.5} />,
+    path: "/user",
+  },
+]
+
+const ProjectManagerOnlyItem: NavItem[] = [
+  {
+    icon: <FolderGit2 strokeWidth={1.5} />,
+    name: "Projects",
+    path: "/project",
+  },
+  {
+    icon: <Clock10Icon strokeWidth={1.5} />,
+    name: "Check-in",
+    path: "/clock",
+  },
+  {
+    name: "Kanban Board",
+    icon: <Layers />,
+    path: "/kanban",
+    // subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
+  },
+  {
+    icon: <Presentation strokeWidth={1.5} />,
+    name: "Meetings",
+    path: "/meeting",
+  },
+  {
+    icon: <LucideClipboardPenLine strokeWidth={1.5} />,
+    name: "Project Plan",
+    path: "/project-plan",
+    role: "ADMIN"
+  },
+  {
+    name: "Daily Reports",
+    icon: <Flag strokeWidth={1.5} />,
+    path: "/daily-reports",
+  },
+  {
+    name: "User Performance",
+    icon: <ChartNoAxesCombined strokeWidth={1.5} />,
+    path: "/user-performance",
+  },
+  {
+    name: "User Management",
+    icon: <UsersRound strokeWidth={1.5} />,
+    path: "/user",
+  },
+]
+
+const AppSidebar: React.FC = () => {
+  const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
+  const pathname = usePathname();
+  const [userRole, setUserRole] = useState<string | null>(null);
+  const { notifications, setNotifications } = useNotifications();
+
+  const getUnreadCount = (section: string) =>
+    notifications.filter(
+      (n) => n.section === section && !n.isRead
+    ).length;
+
+  useEffect(() => {
+    // fetch('/api/user')
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     if (data.user) setUserRole(data.user.role);
+    //   });
+    const res = localStorage.getItem("user");
+    const data = res ? JSON.parse(res) : null;
+    if (data) setUserRole(data.role);
+  }, []);
+
+  useEffect(() => {
+    if (!pathname) return;
+
+    setNotifications((prev) =>
+      prev.map((n) =>
+        n.section === pathname ? { ...n, isRead: true } : n
+      )
+    );
+  }, [pathname, setNotifications]);
+
+  const renderMenuItems = (
+    navItems: NavItem[],
+    menuType: MenuType
+  ) => (
+    <ul className="flex flex-col gap-4">
+      {navItems.filter(nav => !nav.role || nav.role === userRole).map((nav, index) => (
+        <li key={nav.name}>
+          {nav.subItems ? (
+            <button
+              onClick={() => handleSubmenuToggle(index, menuType)}
+              className={`menu-item group  ${openSubmenu?.type === menuType && openSubmenu?.index === index
+                ? "menu-item-active"
+                : "menu-item-inactive"
+                } cursor-pointer ${!isExpanded && !isHovered
+                  ? "lg:justify-center"
+                  : "lg:justify-start"
+                }`}
+            >
+              <span
+                className={` ${openSubmenu?.type === menuType && openSubmenu?.index === index
+                  ? "menu-item-icon-active"
+                  : "menu-item-icon-inactive"
+                  }`}
+              >
+                {nav.icon}
+              </span>
+              {(isExpanded || isHovered || isMobileOpen) && (
+                <span className="menu-item-text">{nav.name}</span>
+              )}
+              {(isExpanded || isHovered || isMobileOpen) && (
+                <ChevronDownIcon
+                  className={`ml-auto w-5 h-5 transition-transform duration-200  ${openSubmenu?.type === menuType &&
+                    openSubmenu?.index === index
+                    ? "rotate-180 text-brand-500"
+                    : ""
+                    }`}
+                />
+              )}
+            </button>
+          ) : (
+            nav.path && (
+              <Link
+                href={nav.path}
+                className={`menu-item group ${isActive(nav.path) ? "menu-item-active" : "menu-item-inactive"
+                  }`}
+              >
+                <span
+                  className={`${isActive(nav.path)
+                    ? "menu-item-icon-active"
+                    : "menu-item-icon-inactive"
+                    }`}
+                >
+                  {nav.icon}
+                </span>
+
+                {(isExpanded || isHovered || isMobileOpen) && (
+                  <div className="flex items-center w-full">
+                    <span className="menu-item-text">{nav.name}</span>
+
+                    {getUnreadCount(nav.path) > 0 && (
+                      <span className="ml-auto text-xs text-blue-500 px-2 rounded-full">
+                        {getUnreadCount(nav.path)}
+                      </span>
+                    )}
+                  </div>
+                )}
+              </Link>
+            )
+          )}
+          {nav.subItems && (isExpanded || isHovered || isMobileOpen) && (
+            <div
+              ref={(el) => {
+                subMenuRefs.current[`${menuType}-${index}`] = el;
+              }}
+              className="overflow-hidden transition-all duration-300"
+              style={{
+                height:
+                  openSubmenu?.type === menuType && openSubmenu?.index === index
+                    ? `${subMenuHeight[`${menuType}-${index}`]}px`
+                    : "0px",
+              }}
+            >
+              <ul className="mt-2 space-y-1 ml-9">
+                {nav.subItems.map((subItem) => (
+                  <li key={subItem.name}>
+                    <Link
+                      href={subItem.path}
+                      className={`menu-dropdown-item ${isActive(subItem.path)
+                        ? "menu-dropdown-item-active"
+                        : "menu-dropdown-item-inactive"
+                        }`}
+                    >
+                      {subItem.name}
+                      <span className="flex items-center gap-1 ml-auto">
+                        {subItem.new && (
+                          <span
+                            className={`ml-auto ${isActive(subItem.path)
+                              ? "menu-dropdown-badge-active"
+                              : "menu-dropdown-badge-inactive"
+                              } menu-dropdown-badge `}
+                          >
+                            new
+                          </span>
+                        )}
+                        {subItem.pro && (
+                          <span
+                            className={`ml-auto ${isActive(subItem.path)
+                              ? "menu-dropdown-badge-active"
+                              : "menu-dropdown-badge-inactive"
+                              } menu-dropdown-badge `}
+                          >
+                            pro
+                          </span>
+                        )}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </li>
+      ))}
+    </ul>
+  );
+
+  const [openSubmenu, setOpenSubmenu] = useState<{
+    type: MenuType;
+    index: number;
+  } | null>(null);
+  const [subMenuHeight, setSubMenuHeight] = useState<Record<string, number>>(
+    {}
+  );
+  const subMenuRefs = useRef<Record<string, HTMLDivElement | null>>({});
+
+  // const isActive = (path: string) => path === pathname;
+  const isActive = useCallback((path: string) => path === pathname, [pathname]);
+
+  useEffect(() => {
+    // Check if the current path matches any submenu item
+    let submenuMatched = false;
+    ["main", "others", "for client"].forEach((menuType) => {
+      const items = menuType === "main" ? navItems : othersItems;
+      items.forEach((nav, index) => {
+        if (nav.subItems) {
+          nav.subItems.forEach((subItem) => {
+            if (isActive(subItem.path)) {
+              setOpenSubmenu({
+                type: menuType as MenuType,
+                index,
+              });
+              submenuMatched = true;
+            }
+          });
+        }
+      });
+    });
+
+    // If no submenu item matches, close the open submenu
+    if (!submenuMatched) {
+      setOpenSubmenu(null);
+    }
+  }, [pathname, isActive]);
+
+  useEffect(() => {
+    // Set the height of the submenu items when the submenu is opened
+    if (openSubmenu !== null) {
+      const key = `${openSubmenu.type}-${openSubmenu.index}`;
+      if (subMenuRefs.current[key]) {
+        setSubMenuHeight((prevHeights) => ({
+          ...prevHeights,
+          [key]: subMenuRefs.current[key]?.scrollHeight || 0,
+        }));
+      }
+    }
+  }, [openSubmenu]);
+
+  const handleSubmenuToggle = (index: number, menuType: MenuType) => {
+    setOpenSubmenu((prevOpenSubmenu) => {
+      if (
+        prevOpenSubmenu &&
+        prevOpenSubmenu.type === menuType &&
+        prevOpenSubmenu.index === index
+      ) {
+        return null;
+      }
+      return { type: menuType, index };
+    });
+  };
+
+  return (
+    <aside
+      className={`fixed mt-16 flex flex-col lg:mt-0 top-0 px-5 left-0 bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-screen transition-all duration-300 ease-in-out z-999 border-r border-gray-200 
+        ${isExpanded || isMobileOpen
+          ? "w-[290px]"
+          : isHovered
+            ? "w-[290px]"
+            : "w-[90px]"
+        }
+        ${isMobileOpen ? "translate-x-0" : "-translate-x-full"}
+        lg:translate-x-0`}
+      onMouseEnter={() => !isExpanded && setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div
+        className={`py-8 flex  ${!isExpanded && !isHovered ? "lg:justify-center" : "justify-start"
+          }`}
+      >
+        <Link href="/">
+          {isExpanded || isHovered || isMobileOpen ? (
+            <div className="flex justify-center items-center gap-2.5">
+              <Image
+                src={appConfig.logo}
+                className="rounded-lg"
+                alt={appConfig.name}
+                width={40}
+                height={40}
+              />
+              <h1 className="text-2xl text-black dark:text-white">{appConfig.name}</h1>
+            </div>
+          ) : (
+            <Image
+              src={appConfig.logo}
+              className="rounded-lg"
+              alt={appConfig.name}
+              width={40}
+              height={40}
+            />
+          )}
+        </Link>
+      </div>
+      <div className="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">
+        <nav className="mb-6">
+          <div className="flex flex-col gap-4">
+            {/* MAIN MENU */}
+            {(userRole === "ADMIN" || userRole === "EMPLOYEE") && (
+              <div>
+                <h2
+                  className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${!isExpanded && !isHovered ? "lg:justify-center" : "justify-start"
+                    }`}
+                >
+                  {isExpanded || isHovered || isMobileOpen ? (
+                    "Menu"
+                  ) : (
+                    <HorizontaLDots />
+                  )}
+                </h2>
+                {renderMenuItems(navItems, "main")}
+              </div>
+            )}
+
+            {/* CLIENT SECTION — Only for ADMIN */}
+            {userRole === "ADMIN" && (
+              <div>
+                <h2
+                  className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${!isExpanded && !isHovered ? "lg:justify-center" : "justify-start"
+                    }`}
+                >
+                  {isExpanded || isHovered || isMobileOpen ? (
+                    "For Clients"
+                  ) : (
+                    <HorizontaLDots />
+                  )}
+                </h2>
+
+                {renderMenuItems(clientItems, "for client")}
+              </div>
+            )}
+
+            {/* ADMIN SECTION — Only for ADMIN */}
+            {userRole === "ADMIN" && (
+              <div>
+                <h2
+                  className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${!isExpanded && !isHovered ? "lg:justify-center" : "justify-start"
+                    }`}
+                >
+                  {isExpanded || isHovered || isMobileOpen ? (
+                    "For Admin"
+                  ) : (
+                    <HorizontaLDots />
+                  )}
+                </h2>
+
+                {renderMenuItems(adminOnlyItem, "for Admin")}
+              </div>
+            )}
+
+            {userRole === "MANAGER" && (
+              <div>
+                <h2
+                  className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${!isExpanded && !isHovered ? "lg:justify-center" : "justify-start"
+                    }`}
+                >
+                  {isExpanded || isHovered || isMobileOpen ? (
+                    "For Manager"
+                  ) : (
+                    <HorizontaLDots />
+                  )}
+                </h2>
+
+                {renderMenuItems(ManagerOnlyItem, "for Manager")}
+              </div>
+            )}
+
+            {userRole === "HRMANAGER" && (
+              <div>
+                <h2
+                  className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${!isExpanded && !isHovered ? "lg:justify-center" : "justify-start"
+                    }`}
+                >
+                  {isExpanded || isHovered || isMobileOpen ? (
+                    "For HR Manager"
+                  ) : (
+                    <HorizontaLDots />
+                  )}
+                </h2>
+
+                {renderMenuItems(HrmanagerOnlyItem, "for Manager")}
+              </div>
+            )}
+
+            {userRole === "FINANCE" && (
+              <div>
+                <h2
+                  className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${!isExpanded && !isHovered ? "lg:justify-center" : "justify-start"
+                    }`}
+                >
+                  {isExpanded || isHovered || isMobileOpen ? (
+                    "For Finance"
+                  ) : (
+                    <HorizontaLDots />
+                  )}
+                </h2>
+
+                {renderMenuItems(FinanceOnlyItem, "for Manager")}
+              </div>
+            )}
+
+
+            {/* OTHERS MENU */}
+            {(userRole === "ADMIN" || userRole === "EMPLOYEE") && (
+              <div>
+                <h2
+                  className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${!isExpanded && !isHovered ? "lg:justify-center" : "justify-start"
+                    }`}
+                >
+                  {isExpanded || isHovered || isMobileOpen ? (
+                    "Others"
+                  ) : (
+                    <HorizontaLDots />
+                  )}
+                </h2>
+
+                {renderMenuItems(othersItems, "others")}
+              </div>
+            )}
+
+          </div>
+        </nav>
+
+      </div>
+    </aside>
+  );
+};
+
+export default AppSidebar;
