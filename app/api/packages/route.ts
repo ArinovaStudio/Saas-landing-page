@@ -11,6 +11,8 @@ export async function GET() {
 
     return NextResponse.json({ success: true, packages });
   } catch (err) {
+    console.log(err.message, "this is the main erreo");
+    
     return NextResponse.json(
       { success: false, error: "Failed to fetch packages" },
       { status: 500 }

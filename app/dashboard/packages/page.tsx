@@ -1,6 +1,7 @@
 "use client";
 import { Check, X, Plus } from "lucide-react";
 import { useState, useEffect } from "react";
+import { demo } from "@/lib/demo";
 
 interface Feature {
   name: string;
@@ -107,6 +108,27 @@ export default function PackagesPage() {
     return `${currency === "INR" ? "₹" : "$"}${price}`;
   };
 
+  const updatepackege = async () => {
+    try {
+      console.log("calledd");
+
+      const response = await fetch(`http://localhost:3001/api/update`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(demo),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to update package");
+      }
+      fetchPackages();
+      setShowAddModal(false);
+    } catch (err) {
+      console.error("Error updating package:", err);
+    }
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen bg-[#fafafa] flex items-center justify-center">
@@ -185,7 +207,6 @@ export default function PackagesPage() {
           >
             <Plus size={18} />
           </button>
-
           {/* Right Side - Save text and Toggle */}
           <div className="flex flex-col items-center gap-2">
             <div>
@@ -300,6 +321,14 @@ export default function PackagesPage() {
                   )}
                 </div>
 
+                {selectedPackage === pkg.id && (
+                  <button
+                    onClick={() => updatepackege()}
+                    className="w-full mb-3 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 font-medium"
+                  >
+                    Update Package
+                  </button>
+                )}
                 {/* CTA Button */}
                 <button
                   onClick={() => setSelectedPackage(selectedPackage === pkg.id ? null : pkg.id)}
