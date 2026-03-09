@@ -108,26 +108,56 @@ export default function PackagesPage() {
     return `${currency === "INR" ? "₹" : "$"}${price}`;
   };
 
-  const updatepackege = async () => {
-    try {
-      console.log("calledd");
+ const updatepackege = async (pkgs: Package) => {
+  try {
+    console.log("called", pkgs);
 
-      const response = await fetch(`http://localhost:3001/api/update`, {
-        method: "POST",
+    const response = await fetch(`/api/update-system`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(pkgs),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to update package");
+    }
+
+  } catch (err) {
+    console.error("Error updating package:", err);
+  }
+};
+
+  const updateFeatureStatus = async (
+    packageId: string,
+    featureName: string,
+    included: boolean
+  ) => {
+    try {
+      console.log(packageId, featureName, included);
+
+      const response = await fetch("/api/packages", {
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(demo),
+        body: JSON.stringify({
+          packageId,
+          featureName,
+          included,
+        }),
       });
+
       if (!response.ok) {
-        throw new Error("Failed to update package");
+        throw new Error("Failed to update feature status");
       }
       fetchPackages();
-      setShowAddModal(false);
+
     } catch (err) {
-      console.error("Error updating package:", err);
+      console.error("Feature update failed", err);
     }
-  }
+  };
 
   if (loading) {
     return (
@@ -323,7 +353,7 @@ export default function PackagesPage() {
 
                 {selectedPackage === pkg.id && (
                   <button
-                    onClick={() => updatepackege()}
+                    onClick={() => updatepackege(pkg)}
                     className="w-full mb-3 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 font-medium"
                   >
                     Update Package
@@ -366,7 +396,7 @@ export default function PackagesPage() {
                         <li key={idx} className="flex items-start gap-3">
                           {selectedPackage === pkg.id ? (
                             <>
-                              <button
+                              {/* <button
                                 onClick={() => {
                                   const updated = [...features];
                                   updated[idx] = { ...updated[idx], name: featureName, included: !isIncluded };
@@ -375,7 +405,39 @@ export default function PackagesPage() {
                                 className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors flex-shrink-0 mt-0.5 ${isIncluded ? "bg-blue-600" : "bg-gray-300"}`}
                               >
                                 <span className={`inline-block h-3 w-3 transform rounded-full bg-white transition-transform ${isIncluded ? "translate-x-5" : "translate-x-1"}`} />
+                              </button> */}
+
+                              <button
+                                onClick={() => {
+                                  const updated: Feature[] = [...features];
+
+                                  const newValue = !isIncluded;
+
+                                  updated[idx] = {
+                                    ...updated[idx],
+                                    name: featureName,
+                                    included: newValue,
+                                  };
+
+                                  // update UI immediately
+                                  setPackages((prev) =>
+                                    prev.map((p) =>
+                                      p.id === pkg.id ? { ...p, features: updated } : p
+                                    )
+                                  );
+
+                                  // update backend
+                                  updateFeatureStatus(pkg.id, featureName, newValue);
+                                }}
+                                className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors flex-shrink-0 mt-0.5 ${isIncluded ? "bg-blue-600" : "bg-gray-300"
+                                  }`}
+                              >
+                                <span
+                                  className={`inline-block h-3 w-3 transform rounded-full bg-white transition-transform ${isIncluded ? "translate-x-5" : "translate-x-1"
+                                    }`}
+                                />
                               </button>
+
                               <input
                                 type="text"
                                 value={featureName}

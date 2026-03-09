@@ -12,7 +12,7 @@ export async function GET() {
     return NextResponse.json({ success: true, packages });
   } catch (err) {
     console.log(err.message, "this is the main erreo");
-    
+
     return NextResponse.json(
       { success: false, error: "Failed to fetch packages" },
       { status: 500 }
@@ -70,6 +70,75 @@ export async function PUT(req: NextRequest) {
     return NextResponse.json({ success: true, package: pkg });
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });
+  }
+}
+
+// UPDATE PACKAGE FEATURE
+export async function PATCH(req: NextRequest) {
+  try {
+    console.log("calledd patch");
+
+    const body = await req.json();
+    const { packageId, featureName, included } = body;
+
+    if (!packageId || !featureName || typeof included !== "boolean") {
+      return NextResponse.json(
+        { error: "Invalid request data" },
+        { status: 400 }
+      );
+    }
+
+    // get current package
+    const pkg = await prisma.package.findUnique({
+      where: { id: packageId },
+      select: { features: true }
+    });
+console.log(pkg, packageId);
+
+    if (!pkg) {
+      return NextResponse.json(
+        { error: "Package not found" },
+        { status: 404 }
+      );
+    }
+
+    const features = Array.isArray(pkg.features) ? pkg.features : [];
+
+    // update feature
+    const updatedFeatures = features.map((f: any) => {
+      if (f.name === featureName) {
+        return {
+          ...f,
+          included
+        };
+      }
+      return f;
+    });
+    console.log("updatedFeatures", updatedFeatures);
+    
+
+    // save updated JSON
+    const response = await prisma.package.update({
+      where: { id: packageId },
+      data: {
+        features: updatedFeatures
+      }
+    });
+    console.log("response", response);
+
+
+    return NextResponse.json({
+      success: true,
+      message: "Feature updated successfully"
+    });
+
+  } catch (error) {
+    console.error("Feature update error:", error);
+
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
   }
 }
 
