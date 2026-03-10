@@ -10,66 +10,69 @@ enum PACKAGE_STATUS {
   ACTIVE
   EXPIRED
   CANCELLED
+  PENDING
 }
 
 model User {
   id String @id @default(cuid())
 
-  name     String
-  personId String
-  Position String
-  Email    String
-
-  companyId String
-  Company   UserCompany @relation(fields: [companyId], references: [id])
-
-  systemId String
-  server   System @relation(fields: [systemId], references: [id])
-
-  admindetails String
-  admin        admindetails @relation(fields: [admindetails], references: [id])
+  name         String
+  personId     String
+  position     String
+  email        String
+  userCompany  UserCompany[]
+  system       System[]
+  adminDetails AdminDetails[]
+  userPackages UserPackage[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Package {
-  id          String   @id @default(cuid())
-  name        String   @unique
-  slug        String   @unique
+  id          String  @id @default(cuid())
+  name        String  @unique
+  slug        String  @unique
   description String?
-  price       Decimal  @db.Decimal(10, 2)
-  currency    String   @default("INR")
+  price       Decimal @db.Decimal(10, 2)
+  currency    String  @default("INR")
   features    Json
-  isPopular   Boolean  @default(false)
-  isActive    Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  isPopular   Boolean @default(false)
+  isActive    Boolean @default(true)
 
   userPackages UserPackage[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model UserPackage {
-  id              String         @id @default(cuid())
-  userId          String
-  packageId       String
-  status          PACKAGE_STATUS @default(ACTIVE)
-  purchasedAt     DateTime       @default(now())
-  expiresAt       DateTime?
-  startDate       DateTime?
-  autoRenew       Boolean        @default(false)
-  transactionId   String?
-  paymentAmount   Decimal        @db.Decimal(10, 2)
-  paymentCurrency String         @default("INR")
-  invoice         Json?
-  createdAt       DateTime       @default(now())
-  updatedAt       DateTime       @updatedAt
+  id        String @id @default(cuid())
+  userId    String
+  packageId String
 
+  status PACKAGE_STATUS @default(PENDING)
+
+  purchasedAt DateTime  @default(now())
+  expiresAt   DateTime?
+  startDate   DateTime?
+
+  autoRenew Boolean @default(false)
+
+  transactionId   String?
+  paymentAmount   Decimal @db.Decimal(10, 2)
+  paymentCurrency String  @default("INR")
+
+  invoice Json?
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   package Package @relation(fields: [packageId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([userId])
   @@index([packageId])
-  @@index([status])
 }
 
 model UserCompany {
@@ -77,10 +80,11 @@ model UserCompany {
   name        String?
   email       String?
   phone       String?
-  Address     String?
+  address     String?
   companyType String?
 
-  user User[]
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -94,22 +98,26 @@ model System {
   password  String
   url       String?
   ip        String
-  entrytype String //how to enter inside the vps
+  entrytype String
+  update DateTime?
 
-  user User[]
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-model admindetails {
+model AdminDetails {
   id String @id @default(cuid())
 
   username String?
   email    String?
   password String
 
-  user      User[]
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

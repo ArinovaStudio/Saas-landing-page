@@ -159,6 +159,13 @@ export default function PackagesPage() {
     }
   };
 
+    useEffect(() => {
+    console.log(packages);
+    
+  }, [packages]);
+
+
+
   if (loading) {
     return (
       <div className="min-h-screen bg-[#fafafa] flex items-center justify-center">

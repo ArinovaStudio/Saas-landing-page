@@ -108,3 +108,4 @@ coverage/
 tmp/
 temp/
 *.tmp
+prisma/migrations

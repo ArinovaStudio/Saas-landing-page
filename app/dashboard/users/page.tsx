@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Download, Search, Mail, Phone, Calendar, BadgeCheck, XCircle, Building2, CreditCard, Server, Shield, FileText, MoreHorizontal } from "lucide-react";
 import { Input } from "@/app/components/ui/input";
 import { Table, TableHead, TableHeader, TableRow, TableBody, TableCell } from "@/app/components/ui/table";
@@ -197,6 +197,8 @@ export default function CustomersPage() {
     const [sortFilter, setSortFilter] = useState("newest");
     const [selectedCustomer, setSelectedCustomer] = useState<string | null>(null);
     const [isExportModalOpen, setIsExportModalOpen] = useState(false);
+    const [userdata, setUserdata] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
 
     // Use static data
     const users = STATIC_CUSTOMERS.filter(user => {
@@ -210,11 +212,11 @@ export default function CustomersPage() {
     });
 
     const pagination = { totalPages: 1, total: users.length };
-    const metrics = {
-        totalCustomers: STATIC_CUSTOMERS.length,
-        verifiedCustomers: STATIC_CUSTOMERS.filter(u => u.emailVerified).length,
-        unverifiedCustomers: STATIC_CUSTOMERS.filter(u => !u.emailVerified).length
-    };
+    // const metrics = {
+    //     totalCustomers: STATIC_CUSTOMERS.length,
+    //     verifiedCustomers: STATIC_CUSTOMERS.filter(u => u.emailVerified).length,
+    //     unverifiedCustomers: STATIC_CUSTOMERS.filter(u => !u.emailVerified).length
+    // };
 
     // Helpers
     const formatCurrency = (val: number) => {
@@ -234,6 +236,143 @@ export default function CustomersPage() {
         if (!dateStr) return "—";
         const date = new Date(dateStr);
         return date.toLocaleDateString("en-GB");
+    };
+
+    useEffect(() => {
+        const loadUsers = async () => {
+            const res = await fetch("/api/user");
+            const data = await res.json();
+
+            console.log("API RESPONSE:", data);
+
+            setUserdata(Array.isArray(data) ? data : data.users || data.data || []);
+            setLoading(false);
+        };
+
+        loadUsers();
+    }, []);
+
+    const normalizedUsers = userdata.map((u: any) => {
+        const pkg = u.userPackages?.[0];
+        const system = u.system?.[0];
+        const admin = u.adminDetails?.[0];
+
+        // return {
+        //     id: u.id,
+        //     name: u.name,
+        //     email: u.email,
+        //     customerRole: u.position,
+
+        //     companyName: u.userCompany?.[0]?.name || "N/A",
+
+        //     plan: pkg?.package?.name || "—",
+        //     planType: pkg?.autoRenew ? "monthly" : "yearly",
+
+        //     planStartDate: pkg?.startDate || pkg?.purchasedAt,
+        //     planEndDate: pkg?.expiresAt,
+
+        //     emailVerified: pkg?.status === "ACTIVE",
+
+        //     totalSpent: Number(pkg?.paymentAmount || 0),
+
+        //     _count: {
+        //         orders: u.userPackages?.length || 0
+        //     },
+
+        //     phone: u.userCompany?.[0]?.phone || "—",
+        //     createdAt: u.createdAt,
+
+        //     paymentStatus: pkg?.paymentAmount ? "paid" : "pending",
+
+        //     companyLogo: `https://ui-avatars.com/api/?name=${encodeURIComponent(
+        //         u.userCompany?.[0]?.name || u.name
+        //     )}&background=4a439a&color=fff`,
+
+        //     // VPS
+        //     vpsCredentials: system
+        //         ? {
+        //             host: system.host,
+        //             username: system.username,
+        //             password: system.password
+        //         }
+        //         : null,
+
+        //     // Admin
+        //     adminCredentials: admin
+        //         ? {
+        //             username: admin.username,
+        //             password: admin.password
+        //         }
+        //         : null
+        // };
+    
+        return {
+  id: u.id,
+  name: u.name,
+  email: u.email,
+  customerRole: u.position,
+
+  companyName: u.userCompany?.[0]?.name || "N/A",
+
+  plan: pkg?.package?.name || "—",
+  planType: pkg?.autoRenew ? "monthly" : "yearly",
+
+  planStartDate: pkg?.startDate || pkg?.purchasedAt,
+  planEndDate: pkg?.expiresAt,
+
+  emailVerified: pkg?.status === "ACTIVE",
+  isActivated: pkg?.status === "ACTIVE",   // ADD THIS
+
+  totalSpent: Number(pkg?.paymentAmount || 0),
+
+  _count: {
+    orders: u.userPackages?.length || 0
+  },
+
+  phone: u.userCompany?.[0]?.phone || "—",
+  createdAt: u.createdAt,
+
+  paymentStatus: pkg?.paymentAmount ? "paid" : "pending",
+
+  companyLogo: `https://ui-avatars.com/api/?name=${encodeURIComponent(
+    u.userCompany?.[0]?.name || u.name
+  )}&background=4a439a&color=fff`,
+
+  vpsCredentials: system
+    ? {
+        host: system.host,
+        username: system.username,
+        password: system.password
+      }
+    : null,
+
+  adminCredentials: admin
+    ? {
+        username: admin.username,
+        password: admin.password
+      }
+    : null
+};
+    });
+
+    const userslist = normalizedUsers.filter((user: any) => {
+        const matchesSearch =
+            user.name?.toLowerCase().includes(search.toLowerCase()) ||
+            user.email?.toLowerCase().includes(search.toLowerCase()) ||
+            user.companyName?.toLowerCase().includes(search.toLowerCase());
+
+        const matchesVerified =
+            verifiedFilter === "all" ||
+            (verifiedFilter === "verified" && user.emailVerified) ||
+            (verifiedFilter === "unverified" && !user.emailVerified);
+
+        return matchesSearch && matchesVerified;
+    });
+
+    const metrics = {
+        totalCustomers: normalizedUsers.length,
+        verifiedCustomers: normalizedUsers.filter(u => u.emailVerified).length,
+        unverifiedCustomers: normalizedUsers.filter(u => !u.emailVerified).length
     };
 
     return (
@@ -328,11 +467,11 @@ export default function CustomersPage() {
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                {users.length === 0 ? (
+                                {userslist.length === 0 ? (
                                     <TableRow><TableCell colSpan={9} className="text-center py-12 text-slate-500 font-medium">No customers found.</TableCell></TableRow>
                                 ) : (
-                                    users.map((user: any) => (
-                                        <>
+                                    userslist.map((user: any) => (
+                                        <React.Fragment key={user.id}>
                                             <TableRow
                                                 key={user.id}
                                                 className="hover:bg-slate-50/50 transition-colors cursor-pointer"
@@ -391,7 +530,7 @@ export default function CustomersPage() {
                                                 <TableCell>
                                                     <span className="text-slate-600 text-sm font-medium">
                                                         {formatDMY(user.planEndDate)}
-                                                        </span>
+                                                    </span>
                                                 </TableCell>
 
                                                 {/* Status */}
@@ -500,15 +639,15 @@ export default function CustomersPage() {
                                                                 <div className="space-y-2 text-sm">
                                                                     <div>
                                                                         <span className="text-slate-500 block mb-1">Host:</span>
-                                                                        <code className="bg-slate-100 px-2 py-1 rounded text-xs font-mono block">{user.vpsCredentials.host}</code>
+                                                                        <code className="bg-slate-100 px-2 py-1 rounded text-xs font-mono block text-slate-900">{user.vpsCredentials?.host || "—"}</code>
                                                                     </div>
                                                                     <div>
                                                                         <span className="text-slate-500 block mb-1">Username:</span>
-                                                                        <code className="bg-slate-100 px-2 py-1 rounded text-xs font-mono block">{user.vpsCredentials.username}</code>
+                                                                        <code className="bg-slate-100 px-2 py-1 rounded text-xs font-mono block text-slate-900">{user.vpsCredentials?.username || "—"}</code>
                                                                     </div>
                                                                     <div>
                                                                         <span className="text-slate-500 block mb-1">Password:</span>
-                                                                        <code className="bg-slate-100 px-2 py-1 rounded text-xs font-mono block">{user.vpsCredentials.password}</code>
+                                                                        <code className="bg-slate-100 px-2 py-1 rounded text-xs font-mono block text-slate-900">{user.vpsCredentials?.password || "—"}</code>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -522,11 +661,11 @@ export default function CustomersPage() {
                                                                 <div className="space-y-2 text-sm">
                                                                     <div>
                                                                         <span className="text-slate-500 block mb-1">Username:</span>
-                                                                        <code className="bg-slate-100 px-2 py-1 rounded text-xs font-mono block">{user.adminCredentials.username}</code>
+                                                                        <code className="bg-slate-100 px-2 py-1 rounded text-xs font-mono block">{user.adminCredentials?.username || "—"}</code>
                                                                     </div>
                                                                     <div>
                                                                         <span className="text-slate-500 block mb-1">Password:</span>
-                                                                        <code className="bg-slate-100 px-2 py-1 rounded text-xs font-mono block">{user.adminCredentials.password}</code>
+                                                                        <code className="bg-slate-100 px-2 py-1 rounded text-xs font-mono block">{user.adminCredentials?.password || "—"}</code>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -534,8 +673,9 @@ export default function CustomersPage() {
                                                     </TableCell>
                                                 </TableRow>
                                             )}
-                                        </>
+                                        </React.Fragment>
                                     ))
+                                    // users.map
                                 )}
                             </TableBody>
                         </Table>
