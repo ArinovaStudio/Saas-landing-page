@@ -71,9 +71,9 @@ export function AnalyticChart() {
                         <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="weekly">Weekly</SelectItem>
-                        <SelectItem value="monthly">Monthly</SelectItem>
-                        <SelectItem value="yearly">Yearly</SelectItem>
+                        <SelectItem className="text-black bg-gray-100" value="weekly">Weekly</SelectItem>
+                        <SelectItem className="text-black bg-gray-100" value="monthly">Monthly</SelectItem>
+                        <SelectItem className="text-black bg-gray-100" value="yearly">Yearly</SelectItem>
                     </SelectContent>
                 </Select>
             </CardHeader>

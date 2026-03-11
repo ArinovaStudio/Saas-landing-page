@@ -12,9 +12,9 @@ export default function Header() {
       {/* Right Side Actions */}
       <div className="flex items-center gap-4">
         {/* Notifications */}
-        <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+        {/* <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
           <Bell size={20} />
-        </button>
+        </button> */}
 
         {/* User Profile */}
         <div className="flex items-center gap-3">

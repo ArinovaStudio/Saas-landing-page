@@ -99,9 +99,9 @@ export default function PackagesPage() {
       return "Get a Demo";
     }
     if (pkg.price === 0 && pkg.name.toLowerCase().includes('free')) {
-      return "Get Started";
+      return "View";
     }
-    return "Get started";
+    return "View";
   };
 
   const formatPrice = (price: number, currency: string) => {

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { AnalyticCard } from "./AnalyticCard";
 import { AnalyticChart } from "./AnalyticChart";
 import {
@@ -23,6 +23,13 @@ import {
 type CardKey = "sales" | "revenue" | "orders" | "customers";
 
 export function AnalyticsSection() {
+  const [customerCount, setCustomerCount] = React.useState<number>(0);
+  const [activeCustomers, setActiveCustomers] = React.useState<number>(0);
+  const [pendingCustomers, setPendingCustomers] = React.useState<number>(0);
+  const [metrics, setMetrics] = React.useState({
+    revenue: 0,
+    totalOrders: 0
+  });
   // ✅ SEPARATE timeframe PER CARD
   const [cardTimeframes, setCardTimeframes] = React.useState<
     Record<CardKey, Timeframe>
@@ -46,6 +53,62 @@ export function AnalyticsSection() {
     }));
   };
 
+  React.useEffect(() => {
+    async function loadCustomers() {
+      const res = await fetch("/api/user");
+      const data = await res.json();
+
+      const users = data.users || [];
+
+      setCustomerCount(users.length);
+
+      setActiveCustomers(
+        users.filter((u: any) => u.userPackages?.[0]?.status === "ACTIVE").length
+      );
+
+      setPendingCustomers(
+        users.filter((u: any) => u.userPackages?.[0]?.status !== "ACTIVE").length
+      );
+    }
+
+    loadCustomers();
+  }, []);
+
+  React.useEffect(() => {
+    async function loadMetrics() {
+      const res = await fetch("/api/dashboard-metrics", {
+        method: "POST"
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        console.log(data.data, "dattt");
+      }
+    }
+
+    loadMetrics();
+  }, []);
+
+  React.useEffect(() => {
+    async function loadMetrics() {
+      const res = await fetch("/api/dashboard-metrics", {
+        method: "POST"
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setMetrics({
+          revenue: Number(data.data.revenue),
+          totalOrders: data.data.totalOrders
+        });
+      }
+    }
+
+    loadMetrics();
+  }, []);
+
   // derive data PER CARD
   const salesSummary = deriveSummaryFromChartData(
     chartDataMap[cardTimeframes.sales]
@@ -63,106 +126,50 @@ export function AnalyticsSection() {
     chartDataMap[cardTimeframes.customers]
   );
 
+
+
   return (
     <div className="mt-3 w-full">
-      <div className="flex gap-3">
-        <div className="grid grid-cols-2 gap-6 w-full">
+      <div className="mt-3 w-full pt-4 px-3">
+        <div className="grid grid-cols-4 gap-6">
 
           <AnalyticCard
-            title="Sales"
-            icon={<ShoppingBasket size={22} />}
-            val={`₹${salesSummary.revenue.total}`}
-            rates={Math.abs(salesSummary.revenue.changePercent).toFixed(2)}
-            isUp={salesSummary.revenue.changePercent >= 0}
-            timeframe={cardTimeframes.sales}
-            onTimeframeChange={(v) => updateTimeframe("sales", v)}
-            iconBgClass="bg-[#0a74f5]"
-            iconColorClass="text-white"
-          />
-
-          <AnalyticCard
+            variant="revenue"
             title="Revenue"
-            icon={<Sprout size={22} />}
-            val={`₹${revenueSummary.revenue.total}`}
-            rates={Math.abs(revenueSummary.revenue.changePercent).toFixed(2)}
-            isUp={revenueSummary.revenue.changePercent >= 0}
-            timeframe={cardTimeframes.revenue}
-            onTimeframeChange={(v) => updateTimeframe("revenue", v)}
-            iconBgClass="bg-[#463996]"
-            iconColorClass="text-white"
-          />
-
-          <AnalyticCard
-            title="Orders"
-            icon={<ShoppingCart size={15} />}
-            val={ordersSummary.orders.total.toString()}
-            rates={Math.abs(ordersSummary.orders.changePercent).toFixed(2)}
-            isUp={ordersSummary.orders.changePercent >= 0}
-            timeframe={cardTimeframes.orders}
-            onTimeframeChange={(v) => updateTimeframe("orders", v)}
-            iconBgClass="bg-[#4ccd83]"
-            iconColorClass="text-white"
+            icon={<ShoppingBasket size={20} />}
+            val={`₹${metrics.revenue}`}
+            rates="0"
           />
 
           <AnalyticCard
             title="Customers"
-            icon={<Users size={15} />}
-            val={customersSummary.orders.total.toString()}
-            rates={Math.abs(customersSummary.orders.changePercent).toFixed(2)}
-            isUp={customersSummary.orders.changePercent >= 0}
-            timeframe={cardTimeframes.customers}
-            onTimeframeChange={(v) => updateTimeframe("customers", v)}
-            iconBgClass="bg-[#f6bb07]"
-            iconColorClass="text-white"
+            icon={<Users size={18} />}
+            val={String(customerCount)}
+            rates="0"
+            iconBgClass="bg-purple-200"
+            iconColorClass="text-purple-700"
           />
+
+          <AnalyticCard
+            variant="status"
+            icon={<Package size={20} />}
+            active={activeCustomers}
+            pending={pendingCustomers}
+            val=""
+          />
+
+          <AnalyticCard
+            title="Orders"
+            icon={<ShoppingCart size={18} />}
+            val={String(metrics.totalOrders)}
+            rates="0"
+            iconBgClass="bg-teal-200"
+            iconColorClass="text-teal-700"
+          />
+
         </div>
-        <div className="w-[50%] bg-[#ffffff] rounded-lg pb-8 px-2">
-          <div className="px-3 flex items-center justify-between py-2">
-            <div>
-              <h1 className="text-3xl ">Order</h1>
-              <h1 className="text-3xl ">Summery</h1>
-            </div>
-            <div className="bg-[#FEFEFE] rounded-full p-2 border border-gray-300">
-              <CalendarDays className="text-gray-500"/>
-            </div>
-          </div>
-          <div className="mt-6">
-            <div className="border mb-2 rounded-xl">
-              <div className="flex items-center gap-4 p-4 rounded-lg mx-3 mb-4">
-                <div className="bg-[#F5F4FC] rounded-full p-2">
-                  <ClipboardCheck className="text-2xl text-[#55516E]"/>
-                  </div>
-              <div className="">
-                <p className="text-gray-500">New Order</p>
-                <h1 className="text-xl">547</h1>
-              </div>
-              </div> 
-            </div>
-            <div className="border mb-2 rounded-xl">
-              <div className="flex items-center gap-4 p-4 rounded-lg mx-3 mb-4">
-                <div className="bg-[#DFF9EC] rounded-full p-2">
-                  <Package className="text-2xl text-[#6aa78f]"/>
-                  </div>
-              <div className="">
-                <p className="text-gray-500">Packed</p>
-                <h1 className="text-xl">457</h1>
-              </div>
-              </div> 
-            </div>
-            <div className="border rounded-xl">
-              <div className="flex items-center gap-4 p-4 rounded-lg mx-3 mb-4">
-                <div className="bg-[#FBF6EB] rounded-full p-2">
-                  <Truck className="text-2xl text-[#E5C863]"/>
-                  </div>
-              <div className="">
-                <p className="text-gray-500">Delivered</p>
-                <h1 className="text-xl">145</h1>
-              </div>
-              </div> 
-            </div>
-          </div>
-        </div>
-        <div className="w-full"></div>
+
+
       </div>
 
       <div className="mt-4">

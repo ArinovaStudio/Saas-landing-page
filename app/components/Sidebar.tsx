@@ -7,7 +7,7 @@ const menuItems = [
   { name: "Dashboard", icon: Home, path: "/dashboard" },
   { name: "Packages", icon: Package, path: "/dashboard/packages" },
   { name: "Users", icon: Users, path: "/dashboard/users" },
-  { name: "Settings", icon: Settings, path: "/dashboard/settings" },
+  // { name: "Settings", icon: Settings, path: "/dashboard/settings" },
 ];
 
 export default function Sidebar() {
@@ -16,7 +16,7 @@ export default function Sidebar() {
   return (
     <aside className="w-64 bg-white border-r border-gray-200 flex flex-col">
       <div className="p-6 border-b border-gray-200">
-        <h1 className="text-xl font-bold text-gray-900">Arinova Studios</h1>
+        <h1 className="text-xl font-bold text-gray-900">Arinova Studio</h1>
       </div>
 
       <nav className="flex-1 p-4">
