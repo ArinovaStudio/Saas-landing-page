@@ -81,10 +81,6 @@ export function AnalyticsSection() {
       });
 
       const data = await res.json();
-
-      if (data.success) {
-        console.log(data.data, "dattt");
-      }
     }
 
     loadMetrics();

@@ -287,9 +287,6 @@ export default function CustomersPage() {
     };
 
     const saveCompany = async (userId: string, existing: any) => {
-        console.log(existing, "exiting");
-        console.log(userId, "userID");
-
         const endpoint = existing ? "/api/companydetails" : "/api/companydetails";
         const method = existing ? "PUT" : "POST";
 
@@ -303,8 +300,6 @@ export default function CustomersPage() {
     };
 
     const saveAdmin = async (userId: string, existing: any) => {
-        console.log(existing, "exiting");
-
         const endpoint = existing ? "/api/admindetails" : "/api/admindetails";
         const method = existing ? "PUT" : "POST";
 
@@ -321,8 +316,6 @@ export default function CustomersPage() {
         const loadUsers = async () => {
             const res = await fetch("/api/user");
             const data = await res.json();
-
-            console.log("API RESPONSE:", data);
 
             setUserdata(Array.isArray(data) ? data : data.users || data.data || []);
             setLoading(false);

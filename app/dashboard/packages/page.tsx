@@ -110,8 +110,6 @@ export default function PackagesPage() {
 
  const updatepackege = async (pkgs: Package) => {
   try {
-    console.log("called", pkgs);
-
     const response = await fetch(`/api/update-system`, {
       method: "POST",
       headers: {
@@ -135,8 +133,6 @@ export default function PackagesPage() {
     included: boolean
   ) => {
     try {
-      console.log(packageId, featureName, included);
-
       const response = await fetch("/api/packages", {
         method: "PATCH",
         headers: {
@@ -158,13 +154,6 @@ export default function PackagesPage() {
       console.error("Feature update failed", err);
     }
   };
-
-    useEffect(() => {
-    console.log(packages);
-    
-  }, [packages]);
-
-
 
   if (loading) {
     return (

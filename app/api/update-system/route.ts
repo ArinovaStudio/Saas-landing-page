@@ -77,9 +77,6 @@ export const POST = async (req: NextRequest) => {
       }
     });
 
-    console.log("userss", JSON.stringify(users, null, 2));
-    
-
     if (users.length === 0) {
       return NextResponse.json({ error: "No users found" }, { status: 404 });
     }
@@ -117,7 +114,6 @@ export const POST = async (req: NextRequest) => {
               console.error("Failed:", sys.url);
             } else {
               const json = await res.json();
-              console.log("Success:", sys.url, json);
             }
 
           } catch (err) {

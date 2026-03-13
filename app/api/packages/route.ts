@@ -76,8 +76,6 @@ export async function PUT(req: NextRequest) {
 // UPDATE PACKAGE FEATURE
 export async function PATCH(req: NextRequest) {
   try {
-    console.log("calledd patch");
-
     const body = await req.json();
     const { packageId, featureName, included } = body;
 
@@ -93,7 +91,6 @@ export async function PATCH(req: NextRequest) {
       where: { id: packageId },
       select: { features: true }
     });
-console.log(pkg, packageId);
 
     if (!pkg) {
       return NextResponse.json(
@@ -113,9 +110,7 @@ console.log(pkg, packageId);
         };
       }
       return f;
-    });
-    console.log("updatedFeatures", updatedFeatures);
-    
+    });    
 
     // save updated JSON
     const response = await prisma.package.update({
